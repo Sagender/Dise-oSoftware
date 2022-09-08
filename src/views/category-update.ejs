@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Home</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css">
+	<script src="/js/sweetalert2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<body>
+
+	<!-- Main container -->
+	<main class="full-box main-container">
+		<!-- Nav lateral -->
+		<%- include('../views/partials/sectionLateral') %>
+
+		<!-- Page content -->
+
+		<section class="full-box page-content scroll">
+			<!-- seccion info -->
+			<%- include('../views/partials/navbar-info') %>
+			<div class="full-box page-header">
+				<h3 class="text-left text-uppercase">
+					<i class="fas fa-sync fa-fw"></i> &nbsp; Actualizar categoría
+				</h3>
+				<p class="text-justify">
+					En el módulo CATEGORÍA usted podrá registrar las categorías que servirán para agregar productos y también
+					podrá ver los productos que pertenecen a una categoría determinada. Además de lo antes mencionado, puede
+					actualizar los datos de las categorías, realizar búsquedas de categorías o eliminarlas si así lo desea.
+				</p>
+			</div>
+			
+			<div class="container-fluid">
+				<ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+					<li>
+						<a href="/category-new">
+							<i class="fas fa-tags fa-fw"></i> &nbsp; Nueva categoría
+						</a>
+					</li>
+					<li>
+						<a href="/category-list">
+							<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de categorías
+						</a>
+					</li>
+					<li>
+						<a href="/category-search">
+							<i class="fas fa-search fa-fw"></i> &nbsp; Buscar categoría
+						</a>
+					</li>
+				</ul>
+			</div>
+			<% if (objeto) { %> 
+			<div class="container-fluid">
+				<p class="text-right"><a href="/category-list" class="btn btn-raised btn-info btn-go-back"><i class="fas fa-reply"></i>
+						&nbsp; Regresar atrás</a></p>
+				<form class="form-neon FormularioAjax" action="/updateCategoria"
+					method="POST" data-form="update" autocomplete="off">
+					<input type="hidden" name="idCategoria" value="<%= objeto.idCategoria %>">
+					<fieldset>
+						<legend><i class="far fa-address-card"></i> &nbsp; Información de la categoría</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="Nombre" class="bmd-label-floating">Nombre de la categoría &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-99áéíóúÁÉÍÓÚñÑ ]{3,40}" class="form-control"
+											name="Nombre" value="<%= objeto.Nombre %>" id="Nombre" maxlength="40">
+									</div>
+								</div>
+								
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="idEstado" class="bmd-label-floating">Estado de la categoría</label>
+										<select class="form-control" name="idEstado" id="idEstado">
+				<option <%= objeto.Estado =='HABILITADO' ? "selected" :'' %> value="1" >1 - Habilitada</option>
+				<option <%= objeto.Estado =='DESHABILITADO' ? "selected" : '' %> value="2">2 - Deshabilitada</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync"></i> &nbsp;
+							ACTUALIZAR</button>
+					</p>
+					<p class="text-center">
+						<small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son
+							obligatorios</small>
+					</p>
+				</form>
+			</div>
+			<% } %>
+		</section>
+
+	</main>
+
+
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="/js/bootstrap-material-design.min.js"></script>
+	<script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+	<script src="/js/main.js"></script>
+
+</body>
+
+</html>

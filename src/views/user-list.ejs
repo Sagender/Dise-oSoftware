@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Home</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css" />
+    <script src="js/sweetalert2.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/jquery.mCustomScrollbar.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+</head>
+
+<body>
+
+	<!-- Main container -->
+	<main class="full-box main-container">
+		<!-- Nav lateral -->
+		<%- include('../views/partials/sectionLateral') %>
+
+		<!-- Page content -->
+
+		<section class="full-box page-content scroll">
+			<!-- seccion info -->
+			<%- include('../views/partials/navbar-info') %>
+			<div class="full-box page-header">
+				<h3 class="text-left text-uppercase">
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios
+				</h3>
+				<p class="text-justify">
+					En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un cajero,
+					también podrá ver la lista de usuarios registrados, buscar usuarios en el sistema, actualizar datos de otros
+					usuarios y los suyos.
+				</p>
+			</div>
+
+			<div class="container-fluid">
+				<ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+					<li>
+						<a href="user-new">
+							<i class="fas fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+						</a>
+					</li>
+					<li>
+						<a class="active" href="user-list">
+							<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios
+						</a>
+					</li>
+					<li>
+						<a href="user-search">
+							<i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="container-fluid">
+
+				<div class="table-responsive">
+					<table id="usuarios" class="table table-sm">
+						<thead class="table-dark">
+							<tr class="text-center roboto-medium">
+								<th>#</th>
+								<th>DOCUMENTO</th>
+								<th>CARGO</th>
+								<th>NOMBRE</th>
+								<th>USUARIO</th>
+								<th>TELEFONO</th>
+								<th>ACTUALIZAR</th>
+								<th>ELIMINAR</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% data.forEach((objeto)=> { %>
+							<!-- bloque para replicar -->
+							<tr class="text-center">
+								<td><%= objeto.idUsuarios %></td>
+								<td><%= objeto.Documento %></td>
+								<td><%= objeto.Cargo %></td>
+								<td><%= objeto.Nombre %></td>
+								<td><%= objeto.Usuario %></td>
+								<td><%= objeto.Telefono %></td>
+								<td>
+									<a class="btn btn-success"
+										href="user-update">
+										<i class="fas fa-sync fa-fw"></i>
+									</a>
+								</td>
+								<td>
+									<form class="FormularioAjax" action="/eliminarUsuario"
+										method="POST" data-form="delete" autocomplete="off">
+										<input type="hidden" name="NickName" value="<%= objeto.NickName %>">
+										<input type="hidden" name="idUsuarios" value="<%= objeto.idUsuarios %>">
+										<button type="submit" class="btn btn-warning">
+											<i class="far fa-trash-alt"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+							<% 	}) %>
+						</tbody>
+
+
+					</table>
+				</div>
+				
+			</div>
+		</section>
+
+	</main>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/popper.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/js/bootstrap-material-design.min.js"></script>
+    <script>
+      function confirmar(id) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Usted ha eliminado una caja",
+          timer: 99999999,
+          showConfirmButton: false,
+        });
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $("body").bootstrapMaterialDesign();
+      });
+
+      $(document).ready(function () {
+        $("#usuarios").DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+          }
+        });
+      });
+    </script>
+
+    <script src="/js/main.js"></script>
+
+</body>
+
+</html>

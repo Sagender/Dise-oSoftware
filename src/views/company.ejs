@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Home</title>
+
+	<link rel="stylesheet" tyoe="text/css" href="css/normalize.css">
+	<link rel="stylesheet" tyoe="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" tyoe="text/css" href="css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" tyoe="text/css" href="css/all.css">
+	<link rel="stylesheet" tyoe="text/css" href="css/sweetalert2.min.css">
+	<script src="js/sweetalert2.min.js"></script>
+	<link rel="stylesheet" tyoe="text/css" href="css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" tyoe="text/css" href="css/style.css">
+
+</head>
+
+<body>
+
+	<!-- Main container -->
+	<main class="full-box main-container">
+		<!-- Nav lateral -->
+		<%- include('../views/partials/sectionLateral') %>
+
+		<!-- Page content -->
+
+		<section class="full-box page-content scroll">
+			<!-- seccion info -->
+			<%- include('../views/partials/navbar-info') %>
+			<div class="full-box page-header">
+				<h3 class="text-left text-uppercase">
+					<i class="fas fa-store-alt fa-fw"></i> &nbsp; Datos de la empresa
+				</h3>
+				<p class="text-justify">
+					En el módulo EMPRESA usted puede registrar los datos de su compañía, negocio u organización. Una vez que
+					registre los datos de su empresa solo podrá actualizarlos en caso quiera cambiar algún dato, ya no será
+					necesario registrarlos nuevamente.
+				</p>
+			</div>
+
+			<div class="container-fluid">
+				<form class="form-neon FormularioAjax" action="http://systems.designlopers.com/SVI/ajax/empresaAjax.php"
+					method="POST" data-form="update" autocomplete="off">
+					<input type="hidden" name="empresa_id_up" value="dEpjOG5JVWliYnFkMEdKd0NiK3FVUT09">
+					<input type="hidden" name="modulo_empresa" value="actualizar">
+					<fieldset>
+						<legend><i class="far fa-address-card"></i> &nbsp; Datos de la empresa</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_tipo_documento" class="bmd-label-floating">Tipo de documento &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<select class="form-control" name="empresa_tipo_documento_up" id="empresa_tipo_documento">
+											<option value="" selected="">Seleccione una opción</option>
+											<option value="DNI" selected="">1 - DNI (Actual)</option>
+											<option value="Cedula">2 - Cedula</option>
+											<option value="NIT">3 - NIT</option>
+											<option value="RUC">4 - RUC</option>
+											<option value="Otro">5 - Otro</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-9-]{7,30}" class="form-control"
+											name="empresa_numero_documento_up" value="43576925" id="empresa_numero_documento" maxlength="30">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_nombre" class="bmd-label-floating">Nombre &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ., ]{4,75}" class="form-control"
+											name="empresa_nombre_up" value="Gian" id="empresa_nombre" maxlength="75">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_direccion" class="bmd-label-floating">Dirección</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{4,97}" class="form-control"
+											name="empresa_direccion_up" value="Mitre 2314" id="empresa_direccion" maxlength="97">
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<legend><i class="fas fa-phone-volume"></i> &nbsp; Información de contacto</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_telefono" class="bmd-label-floating">Teléfono</label>
+										<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="empresa_telefono_up"
+											value="3482490537" id="empresa_telefono" maxlength="20">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_email" class="bmd-label-floating">Email</label>
+										<input type="email" class="form-control" name="empresa_email_up" value="gi-com@hotmail.com"
+											id="empresa_email" maxlength="50">
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<legend><i class="far fa-money-bill-alt"></i> &nbsp; Información de impuestos</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_impuesto_nombre" class="bmd-label-floating">Nombre de impuesto &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z]{2,7}" class="form-control" name="empresa_impuesto_nombre_up"
+											value="IVA" id="empresa_impuesto_nombre" maxlength="7">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="empresa_impuesto_porcentaje" class="bmd-label-floating">Impuesto porcentaje % &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[0-9]{1,2}" class="form-control" name="empresa_impuesto_porcentaje_up"
+											value="21" id="empresa_impuesto_porcentaje" maxlength="2">
+									</div>
+								</div>
+								<div class="col-12">
+									<br>
+									<span>¿Mostrar impuestos en facturas y tickets?</span>
+									<div class="form-group bmd-form-group is-filled">
+										<div class="radio">
+											<label>
+												<input type="radio" name="empresa_impuesto_factura_up" value="Si" checked=""><span
+													class="bmd-radio"></span>
+												<i class="far fa-check-circle fa-fw"></i> &nbsp; Si
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="empresa_impuesto_factura_up" value="No"><span
+													class="bmd-radio"></span>
+												<i class="far fa-times-circle fa-fw"></i> &nbsp; No
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync"></i> &nbsp;
+							ACTUALIZAR</button>
+					</p>
+					<p class="text-center">
+						<small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son
+							obligatorios</small>
+					</p>
+				</form>
+			</div>
+		</section>
+
+	</main>
+
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/bootstrap-material-design.min.js"></script>
+	<script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>

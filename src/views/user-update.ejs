@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Home</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css">
+	<script src="js/sweetalert2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+
+<body>
+
+	<!-- Main container -->
+	<main class="full-box main-container">
+		<!-- Nav lateral -->
+		<%- include('../views/partials/sectionLateral') %>
+
+		<!-- Page content -->
+
+		<section class="full-box page-content scroll">
+			<!-- seccion info -->
+			<%- include('../views/partials/navbar-info') %>
+			<div class="full-box page-header">
+				<h3 class="text-left text-uppercase">
+					<i class="fas fa-sync fa-fw"></i> &nbsp; Actualizar cuenta
+				</h3>
+				<p class="text-justify">
+					En el módulo USUARIO podrá registrar nuevos usuarios en el sistema ya sea un administrador o un cajero,
+					también podrá ver la lista de usuarios registrados, buscar usuarios en el sistema, actualizar datos de otros
+					usuarios y los suyos.
+				</p>
+			</div>
+
+			<div class="container-fluid">
+				<ul class="full-box list-unstyled page-nav-tabs text-uppercase">
+					<li>
+						<a href="user-new">
+							<i class="fas fa-user-tie fa-fw"></i> &nbsp; Nuevo usuario
+						</a>
+					</li>
+					<li>
+						<a href="user-list">
+							<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de usuarios
+						</a>
+					</li>
+					<li>
+						<a href="user-search">
+							<i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario
+						</a>
+					</li>
+				</ul>
+			</div>	
+
+			<div class="container-fluid">
+				<p class="text-right"><a href="user-list" class="btn btn-raised btn-info btn-go-back"><i class="fas fa-reply"></i>
+						&nbsp; Regresar atrás</a></p>
+				<form class="form-neon FormularioAjax" action="http://systems.designlopers.com/SVI/ajax/usuarioAjax.php"
+					method="POST" data-form="update" autocomplete="off">
+					<input type="hidden" name="usuario_id_up" value="bTN4NVFnVno1cmlRUzlrd3UxT3ViUT09">
+					<input type="hidden" name="modulo_usuario" value="actualizar">
+					<fieldset>
+						<legend><i class="far fa-address-card"></i> &nbsp; Información personal</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_tipo_documento" class="bmd-label-floating">Tipo de documento &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<select class="form-control" name="usuario_tipo_documento_up" id="usuario_tipo_documento">
+											<option value="DUI">1 - DUI</option>
+											<option value="DNI">2 - DNI</option>
+											<option value="Cedula" selected="">3 - Cedula (Actual)</option>
+											<option value="Licencia">4 - Licencia</option>
+											<option value="Pasaporte">5 - Pasaporte</option>
+											<option value="Otro">6 - Otro</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_numero_documento" class="bmd-label-floating">Numero de documento &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-9-]{7,30}" class="form-control"
+											name="usuario_numero_documento_up" value="3735931" id="usuario_numero_documento" maxlength="30">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_cargo" class="bmd-label-floating">Cargo &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<select class="form-control" name="usuario_cargo_up" id="usuario_cargo">
+											<option value="Administrador" selected="">1 - Administrador (Actual)</option>
+											<option value="Cajero">2 - Cajero</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_nombre" class="bmd-label-floating">Nombres &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,35}" class="form-control"
+											name="usuario_nombre_up" value="Alejandra" id="usuario_nombre" maxlength="35">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_apellido" class="bmd-label-floating">Apellidos &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,35}" class="form-control"
+											name="usuario_apellido_up" value="Lopez" id="usuario_apellido" maxlength="35">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_telefono" class="bmd-label-floating">Teléfono</label>
+										<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="usuario_telefono_up"
+											value="+595981662123" id="usuario_telefono" maxlength="20">
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<legend><i class="fas fa-user-friends"></i> &nbsp; Genero</legend>
+									<div class="form-group bmd-form-group is-filled">
+										<div class="radio">
+											<label>
+												<input type="radio" name="usuario_genero_up" value="Masculino" checked=""><span
+													class="bmd-radio"></span>
+												<i class="fas fa-male fa-fw"></i> &nbsp; Masculino
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="usuario_genero_up" value="Femenino"><span class="bmd-radio"></span>
+												<i class="fas fa-female fa-fw"></i> &nbsp; Femenino
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<legend><i class="fas fa-user-lock"></i> &nbsp; Información de la cuenta</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_usuario" class="bmd-label-floating">Nombre de usuario &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-9]{4,25}" class="form-control" name="usuario_usuario_up"
+											value="Alejandra" id="usuario_usuario" maxlength="25">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_email" class="bmd-label-floating">Email</label>
+										<input type="email" class="form-control" name="usuario_email_up" value="altamirapy@gmail.com"
+											id="usuario_email" maxlength="50">
+									</div>
+								</div>
+								<div class="col-12">
+									<p class="text-center">Si desea actualizar su contraseña en el sistema debe de introducir una nueva
+										contraseña y repetirla</p>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group">
+										<label for="usuario_clave_1" class="bmd-label-floating">Nueva contraseña</label>
+										<input type="password" class="form-control" name="usuario_clave_1_up" id="usuario_clave_1"
+											pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group">
+										<label for="usuario_clave_2" class="bmd-label-floating">Repetir nueva contraseña</label>
+										<input type="password" class="form-control" name="usuario_clave_2_up" id="usuario_clave_2"
+											pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="usuario_estado" class="bmd-label-floating">Estado de la cuenta &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<select class="form-control" name="usuario_estado_up" id="usuario_estado">
+											<option value="Activa">1 - Activa</option>
+											<option value="Deshabilitada" selected="">2 - Deshabilitada (Actual)</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<div class="container-fluid">
+							<legend><i class="fas fa-portrait"></i> &nbsp; Avatar</legend>
+							<div class="row">
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Male_2.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_2.png"
+													alt="Avatar_Male_2.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Male_1.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_1.png"
+													alt="Avatar_Male_1.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_default_male.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_default_male.png"
+													alt="Avatar_default_male.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Female_5.png" checked=""><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_5.png"
+													alt="Avatar_Female_5.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_default_female.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_default_female.png"
+													alt="Avatar_default_female.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Female_1.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_1.png"
+													alt="Avatar_Female_1.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Male_3.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_3.png"
+													alt="Avatar_Male_3.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Female_4.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_4.png"
+													alt="Avatar_Female_4.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Male_4.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_4.png"
+													alt="Avatar_Male_4.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Male_5.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Male_5.png"
+													alt="Avatar_Male_5.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Female_3.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_3.png"
+													alt="Avatar_Female_3.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+
+								<div class="col-6 col-md-4 col-lg-2">
+									<span class="bmd-form-group is-filled">
+										<div class="radio radio-avatar-form">
+											<label>
+												<input type="radio" name="usuario_foto_up" value="Avatar_Female_2.png"><span
+													class="bmd-radio"></span>
+												<img src="http://systems.designlopers.com/SVI/vistas/assets/avatar/Avatar_Female_2.png"
+													alt="Avatar_Female_2.png" class="img-fluid img-avatar-form">
+											</label>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<p class="text-center">Para poder actualizar los datos en el sistema debe de introducir su nombre de usuario
+							y su contraseña actual</p>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="administrador_usuario" class="bmd-label-floating">Usuario &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="text" pattern="[a-zA-Z0-9]{4,25}" class="form-control" name="administrador_usuario"
+											value="Administrador" id="administrador_usuario" maxlength="25">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group bmd-form-group is-filled">
+										<label for="administrador_clave" class="bmd-label-floating">Contraseña &nbsp; <i
+												class="fab fa-font-awesome-alt"></i> &nbsp;</label>
+										<input type="password" class="form-control" name="administrador_clave" value="Administrador"
+											id="administrador_clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100">
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync"></i> &nbsp;
+							ACTUALIZAR</button>
+					</p>
+					<p class="text-center">
+						<small>Los campos marcados con &nbsp; <i class="fab fa-font-awesome-alt"></i> &nbsp; son
+							obligatorios</small>
+					</p>
+				</form>
+			</div>
+		</section>
+
+	</main>
+
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/bootstrap-material-design.min.js"></script>
+	<script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>
